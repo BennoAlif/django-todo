@@ -10,7 +10,7 @@ class TodoSerializer(serializers.ModelSerializer):
     def validate(self, data):
         # Sanitize the input data using bleach
         data['description'] = sanitize_input(data['description'])
-        data['title'] = sanitize_input(data['description'])
+        data['title'] = sanitize_input(data['title'])
 
         return data
 
