@@ -1,13 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from apps.serializers import TodoSerializer
 
-from apps.models import Todo
 
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    todos = serializers.HyperlinkedRelatedField(
-        many=True, view_name='todo-detail', read_only=True)
+class UserSerializer(serializers.ModelSerializer):
+    todos = TodoSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'groups', 'todos']
+        fields = '__all__'
